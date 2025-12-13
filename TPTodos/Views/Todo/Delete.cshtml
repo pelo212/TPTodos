@@ -1,0 +1,43 @@
+﻿@model TPTodos.Models.Todo
+@{
+    ViewData["Title"] = "Supprimer";
+}
+
+<h1>Supprimer une tâche</h1>
+<h3 class="text-danger">Êtes-vous sûr de vouloir supprimer cette tâche ?</h3>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Libellé</dt>
+            <dd class="col-sm-9">@Model.Libelle</dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+
+            <dt class="col-sm-3">Date limite</dt>
+            <dd class="col-sm-9">@Model.DateLimite.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-3">Statut</dt>
+            <dd class="col-sm-9">
+                @if (Model.Statut == TPTodos.Enums.State.TODO)
+                {
+                    <span class="badge bg-secondary">À faire</span>
+                }
+                else if (Model.Statut == TPTodos.Enums.State.DOING)
+                {
+                    <span class="badge bg-warning text-dark">En cours</span>
+                }
+                else if (Model.Statut == TPTodos.Enums.State.DONE)
+                {
+                    <span class="badge bg-success">Terminée</span>
+                }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-index="@ViewBag.Index" method="post" class="d-inline">
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+    </div>
+</div>
