@@ -16,13 +16,12 @@ namespace TPTodos.Mappers
         }
         public static TodoAddVM GetTodoVMFromTodo(Todo todo)
         {
-            return new TodoAddVM
-            {
-                Libelle = todo.Libelle,
-                Description = todo.Description,
-                DateLimite = todo.DateLimite,
-                Statut = todo.Statut
-            };
+            TodoAddVM vm = new TodoAddVM();
+                vm.Libelle = todo.Libelle;
+                vm.Description = todo.Description;
+                vm.DateLimite = todo.DateLimite;
+                vm.Statut = todo.Statut;
+                return vm;
+        }
         }
     }
-}

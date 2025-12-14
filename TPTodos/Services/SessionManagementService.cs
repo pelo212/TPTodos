@@ -10,8 +10,9 @@ namespace TPTodos.Services
             string chaine = JsonSerializer.Serialize(obj);
             context.Session.SetString(key, chaine);
         }
+
         public T get<T>(string key, HttpContext context){
-            return JsonSerializer.Deserialize<T>(context.Session.GetString(key)??"[]");
+            return JsonSerializer.Deserialize<T>(context.Session.GetString(key) ?? "[]");
         }
     }
 }
